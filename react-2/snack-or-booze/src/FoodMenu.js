@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./FoodMenu.css";
 import {
   Card,
   CardBody,
@@ -10,7 +9,7 @@ import {
   ListGroupItem
 } from "reactstrap";
 
-function FoodMenu({ snacks }) {
+function FoodMenu({ snacks}) {
   return (
     <section className="col-md-4">
       <Card>
