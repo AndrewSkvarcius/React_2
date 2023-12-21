@@ -7,6 +7,7 @@ import NavBar from "./NavBar";
 import { Route, Switch } from "react-router-dom";
 import MenuList from "./MenuList";
 import ItemDetail from "./ItemDetail";
+import AddItemForm from './AddItemForm';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,18 +39,24 @@ function App() {
             </Route>
             <Route exact path="/snacks">
   <MenuList items={snacks} title="Snacks" itemType="snacks" />
-</Route>
-<Route path="/snacks/:id">
-  <ItemDetail items={snacks} cantFind="/snacks" />
-</Route>
-<Route exact path="/drinks">
-  <MenuList items={drinks} title="Drinks" itemType="drinks" />
-</Route>
-<Route path="/drinks/:id">
-  <ItemDetail items={drinks} cantFind="/drinks" />
-</Route>
+            </Route>
+      <Route path="/snacks/:id">
+              <ItemDetail items={snacks} cantFind="/snacks" />
+            </Route>
+      <Route exact path="/drinks">
+              <MenuList items={drinks} title="Drinks" itemType="drinks" />
+          </Route>
+      <Route path="/drinks/:id">
+            <ItemDetail items={drinks} cantFind="/drinks" />
+          </Route>
+      <Route exact path="/add-snack">
+               <AddItemForm itemType="snacks" />
+            </Route>
+      <Route exact path="/add-drink">
+                 <AddItemForm itemType="drinks" />
+            </Route>
             <Route>
-              <p>Hmmm. I can't seem to find what you want.</p>
+              <p>Hmmm. I can't seem to find what you want.</p>      
             </Route>
           </Switch>
         </main>

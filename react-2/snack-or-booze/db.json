@@ -50,6 +50,27 @@
       "description": "Tart and delicious.",
       "recipe": "Mix arugula, toasted walnuts, and thinly-sliced Parmesan cheese. Dress with lemon and olive oil.",
       "serve": "Place on tiny, precious little plates."
+    },
+    {
+      "name": "chips",
+      "description": "lays",
+      "recipe": "go to the store",
+      "serve": "in a bowl",
+      "id": "luZKvFZ"
+    },
+    {
+      "name": "blue",
+      "description": "sativa citrus flavored ",
+      "recipe": "go to the store",
+      "serve": "in a bowl",
+      "id": "vsm33gF"
+    },
+    {
+      "name": "hello you",
+      "description": "Gore-TEX jacket Shaun Colab and tie dye",
+      "recipe": "go to the store",
+      "serve": "in a bowl",
+      "id": "M6Zfa_k"
     }
   ]
 }

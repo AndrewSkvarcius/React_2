@@ -20,6 +20,27 @@ class SnackOrBoozeApi {
     return result.data;
   }
 
+  static async addSnack(newSnack) {
+    const result = await axios.post(`${BASE_API_URL}/snacks`, newSnack);
+    return result.data;
+  }
+  
+  static async addDrink(newDrink) {
+    const result = await axios.post(`${BASE_API_URL}/drinks`, newDrink);
+    return result.data;
+  }
+  
+  static async deleteSnack(id) {
+    const result = await axios.delete(`${BASE_API_URL}/snacks/${id}`);
+    return result.data;
+  }
+  
+  static async deleteDrink(id) {
+    const result = await axios.delete(`${BASE_API_URL}/drinks/${id}`);
+    return result.data;
+  }
+  
+
 }
 
 export default SnackOrBoozeApi;
