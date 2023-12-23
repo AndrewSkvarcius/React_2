@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
+import { Form, FormGroup, Label, Input, Button, Card } from 'reactstrap';
 import SnackOrBoozeApi from './Api';
+import "./AddItemForm.css"
 
-function AddItemForm({ itemType }) {
+function AddItemForm({ itemType, onItemAdded }) {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     recipe: '',
     serve: ''
   });
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,18 +25,24 @@ function AddItemForm({ itemType }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let addedItem;
     if (itemType === 'snacks') {
-      await SnackOrBoozeApi.addSnack(formData);
+      addedItem = await SnackOrBoozeApi.addSnack(formData);
+      history.push('/snacks'); // Redirect to snacks page
     } else {
-      await SnackOrBoozeApi.addDrink(formData);
+      addedItem = await SnackOrBoozeApi.addDrink(formData);
+      history.push('/drinks'); // Redirect to drinks page
     }
     setFormData({ name: '', description: '', recipe: '', serve: '' });
+    onItemAdded(addedItem);
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Card>
+      <h1 className='itemh1'>Add {itemType}</h1>
+          <Form onSubmit={handleSubmit}>
       <FormGroup>
-        <Label for="name">Name</Label>
+        <Label className="label"for="name">Name</Label>
         <Input
           type="text"
           name="name"
@@ -42,7 +53,7 @@ function AddItemForm({ itemType }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label for="description">Description</Label>
+        <Label className="label" for="description">Description</Label>
         <Input
           type="text"
           name="description"
@@ -52,7 +63,7 @@ function AddItemForm({ itemType }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label for="recipe">Recipe</Label>
+        <Label className="label" for="recipe">Recipe</Label>
         <Input
           type="text"
           name="recipe"
@@ -62,7 +73,7 @@ function AddItemForm({ itemType }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label for="serve">Serve</Label>
+        <Label className="label" for="serve">Serve</Label>
         <Input
           type="text"
           name="serve"
@@ -71,9 +82,12 @@ function AddItemForm({ itemType }) {
           onChange={handleChange}
         />
       </FormGroup>
-      <Button type="submit">Add {itemType}</Button>
+      <Button color="success" outline className="formbtn"size="sm"type="submit">Add {itemType}</Button>
     </Form>
+    </Card>
   );
-}
+
+  }
+
 
 export default AddItemForm;

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./MenuList.css";
 import {
+    Button,
     Card,
     CardBody,
     CardTitle,
@@ -9,7 +10,8 @@ import {
     ListGroup,
     ListGroupItem
   } from "reactstrap";
-function MenuList({ items, title, itemType }) {
+
+  function MenuList({ items, title, itemType, deleteItem}) {
   return (
     <section className="col-md-4">
     <Card>
@@ -24,6 +26,7 @@ function MenuList({ items, title, itemType }) {
         {items.map(item => (
           <ListGroupItem key={item.id}>
             <Link to={`/${itemType}/${item.id}`}>{item.name}</Link>
+            <Button size="sm" color="danger" outline onClick={() => deleteItem(item.id)}>Delete</Button>
           </ListGroupItem>
         ))}
       </ListGroup>

@@ -8,11 +8,14 @@ import { Route, Switch } from "react-router-dom";
 import MenuList from "./MenuList";
 import ItemDetail from "./ItemDetail";
 import AddItemForm from './AddItemForm';
+import NotFound from './NotFound';
 
 function App() {
+  
   const [isLoading, setIsLoading] = useState(true);
   const [snacks, setSnacks] = useState([]);
   const [drinks, setDrinks] = useState([]);
+  
   useEffect(() => {
     async function getSnacksandDrinks() {
       let snacks = await SnackOrBoozeApi.getSnacks();
@@ -27,7 +30,24 @@ function App() {
   if (isLoading) {
     return <p>Loading &hellip;</p>;
   }
+  
+  const handleAddItem = (newItem, itemType) => {
+    if (itemType === 'snacks') {
+      setSnacks(currentSnacks => [...currentSnacks, newItem]);
+    } else {
+      setDrinks(currentDrinks => [...currentDrinks, newItem]);
+    }
+  };
 
+  const deleteItem = async (itemType, id) => {
+    await SnackOrBoozeApi.deleteItem(itemType, id);
+    if (itemType === 'snacks') {
+      setSnacks(snacks => snacks.filter(snack => snack.id !== id));
+    } else {
+      setDrinks(drinks => drinks.filter(drink => drink.id !== id));
+    }
+  };
+  
   return (
     <div className="App">
       <BrowserRouter>
@@ -38,27 +58,27 @@ function App() {
               <Home snacks={snacks} drinks={drinks} />
             </Route>
             <Route exact path="/snacks">
-  <MenuList items={snacks} title="Snacks" itemType="snacks" />
+              <MenuList items={snacks} title="Snacks" itemType="snacks" deleteItem={(id) => deleteItem('snacks', id)} />
             </Route>
-      <Route path="/snacks/:id">
+            <Route exact path="/drinks">
+              <MenuList items={drinks} title="Drinks" itemType="drinks" deleteItem={(id) => deleteItem('drinks', id)} />
+            </Route>
+            <Route path="/snacks/:id">
               <ItemDetail items={snacks} cantFind="/snacks" />
             </Route>
-      <Route exact path="/drinks">
-              <MenuList items={drinks} title="Drinks" itemType="drinks" />
-          </Route>
-      <Route path="/drinks/:id">
-            <ItemDetail items={drinks} cantFind="/drinks" />
-          </Route>
-      <Route exact path="/add-snack">
-               <AddItemForm itemType="snacks" />
+            <Route path="/drinks/:id">
+              <ItemDetail items={drinks} cantFind="/drinks" />
             </Route>
-      <Route exact path="/add-drink">
-                 <AddItemForm itemType="drinks" />
+            <Route exact path="/add-snack">
+              <AddItemForm itemType="snacks" onItemAdded={(newItem) => handleAddItem(newItem, 'snacks')} />
+            </Route>
+            <Route exact path="/add-drink">
+              <AddItemForm itemType="drinks" onItemAdded={(newItem) => handleAddItem(newItem, 'drinks')} />
             </Route>
             <Route>
-              <p>Hmmm. I can't seem to find what you want.</p>      
+            <NotFound />
             </Route>
-          </Switch>
+           </Switch>
         </main>
       </BrowserRouter>
     </div>

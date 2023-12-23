@@ -27,16 +27,30 @@
       "description": "Crisp!",
       "recipe": "Open can.",
       "serve": "Immediately."
+    },
+    {
+      "name": "Blood Mary",
+      "description": "Hangover drink",
+      "recipe": "tomato juice and stuff",
+      "serve": "when hungover",
+      "id": "IWZq-3m"
+    },
+    {
+      "name": "red",
+      "description": "new",
+      "recipe": "steamed",
+      "serve": "on a summer day",
+      "id": "mdCBMs1"
+    },
+    {
+      "name": "blue",
+      "description": "sativa citrus flavored ",
+      "recipe": "got to store ",
+      "serve": "cold",
+      "id": "ZA1eNR0"
     }
   ],
   "snacks": [
-    {
-      "id": "nachos",
-      "name": "Nachos",
-      "description": "An American classic!",
-      "recipe": "Cover expensive, organic tortilla chips with Cheez Whiz.",
-      "serve": "Serve in a hand-thrown ceramic bowl, garnished with canned black olives"
-    },
     {
       "id": "hummus",
       "name": "Hummus",
@@ -52,25 +66,25 @@
       "serve": "Place on tiny, precious little plates."
     },
     {
-      "name": "chips",
-      "description": "lays",
-      "recipe": "go to the store",
-      "serve": "in a bowl",
-      "id": "luZKvFZ"
+      "name": "Hotdog",
+      "description": "ball park frank",
+      "recipe": "steamed",
+      "serve": "on a summer day",
+      "id": "s1oM1RT"
     },
     {
-      "name": "blue",
-      "description": "sativa citrus flavored ",
-      "recipe": "go to the store",
-      "serve": "in a bowl",
-      "id": "vsm33gF"
+      "name": "cheese burger ",
+      "description": "meat sandwich",
+      "recipe": "grill",
+      "serve": "hot",
+      "id": "K_Y8xJN"
     },
     {
-      "name": "hello you",
-      "description": "Gore-TEX jacket Shaun Colab and tie dye",
-      "recipe": "go to the store",
-      "serve": "in a bowl",
-      "id": "M6Zfa_k"
+      "name": "Elton John ",
+      "description": "gogogo",
+      "recipe": "touch of sparkle",
+      "serve": "hot ",
+      "id": "vEek9aJ"
     }
   ]
 }
